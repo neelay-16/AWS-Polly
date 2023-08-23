@@ -1,0 +1,10 @@
+import boto3
+polly_client=boto3.client("polly",region_name="ap-south-1")
+text="hi hello this side vikram"
+response = polly_client.synthesize_speech(
+    Text=text,
+    VoiceId='Matthew', 
+    OutputFormat='mp3'
+)
+with open('output.mp3', 'wb') as audio_file:
+    audio_file.write(response['AudioStream'].read())
